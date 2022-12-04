@@ -7,6 +7,10 @@
 from starkware.cairo.common.cairo_builtins import HashBuiltin
 from starkware.cairo.common.uint256 import Uint256
 
+// OpenZeplin
+from openzeppelin.access.ownable.library import Ownable
+
+
 // Project dependencies
 from starkvest.library import StarkVest
 from starkvest.model import Vesting
@@ -98,7 +102,8 @@ func releasable_amount{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_che
 func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
     owner: felt, erc20_address: felt
 ) {
-    return StarkVest.constructor(owner, erc20_address);
+    Ownable.initializer(owner);
+    return StarkVest.initializer(erc20_address);
 }
 
 // -----

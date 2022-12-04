@@ -144,10 +144,9 @@ namespace StarkVest {
     // ------
     // CONSTRUCTOR
     // ------
-    func constructor{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
-        owner: felt, erc20_address: felt
+    func initializer{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr}(
+        erc20_address: felt
     ) {
-        Ownable.initializer(owner);
         erc20_address_.write(erc20_address);
         return ();
     }

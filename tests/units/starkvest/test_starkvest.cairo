@@ -9,6 +9,9 @@ from starkware.cairo.common.bool import TRUE, FALSE
 from starkware.cairo.common.math import assert_not_zero
 from starkware.cairo.common.uint256 import Uint256
 
+// OpenZeplin
+from openzeppelin.access.ownable.library import Ownable
+
 // Project dependencies
 from starkvest.library import StarkVest
 from starkvest.model import Vesting, MAX_SLICE_PERIOD_SECONDS, MAX_TIMESTAMP
@@ -267,8 +270,8 @@ namespace test_internal {
             signers=signers,
             mocks=mocks,
             );
-
-        StarkVest.constructor(signers.admin, mocks.vesting_token_address);
+        Ownable.initializer(signers.admin);
+        StarkVest.initializer(mocks.vesting_token_address);
         return (test_context=context);
     }
 }
